@@ -21,7 +21,7 @@ fn hud_system(
     mut answer_events: EventWriter<AnswerSubmittedEvent>,
 ) {
     let puzzle = match &ctx.current_puzzle {
-        Some(p) => p.clone(),
+        Some(p) => p,
         None => return,
     };
     let op_str = match puzzle.operation {

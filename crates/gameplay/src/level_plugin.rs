@@ -1,10 +1,7 @@
 use bevy::prelude::*;
 use crate::app_states::AppState;
 use crate::events::*;
-use core_domain::{
-    math_engine::{Puzzle, PuzzleGenerator},
-    scoring::SessionScore,
-};
+use core_domain::{math_engine::Puzzle, scoring::SessionScore};
 
 #[derive(Resource, Default)]
 pub struct CurrentLevelContext {
@@ -62,7 +59,4 @@ fn check_level_complete(
     }
 }
 
-// Keep PuzzleGenerator in scope to suppress unused-import warning
-const _: fn() = || {
-    let _ = PuzzleGenerator::generate;
-};
+
