@@ -1,0 +1,60 @@
+version: '3'
+
+tasks:
+  setup:
+    desc: Install required tools and targets
+    cmds:
+      - rustup target add wasm32-unknown-unknown
+      - rustup target add aarch64-linux-android
+      - rustup target add aarch64-apple-ios
+      - cargo install trunk wasm-bindgen-cli cargo-apk
+
+  run-web:
+    desc: Build and serve for browser (WASM)
+    dir: app
+    cmds:
+      - trunk serve
+
+  run-android:
+    desc: Build and run on connected Android device
+    dir: app
+    cmds:
+      - cargo apk run --release
+
+  run-ios:
+    desc: Build for iOS (requires macOS + Xcode)
+    cmds:
+      - cargo build --target aarch64-apple-ios --release
+
+  test:
+    desc: Run all workspace tests
+    cmds:
+      - cargo test --workspace
+
+  lint:
+    desc: Run Clippy lints across workspace
+    cmds:
+      - cargo clippy --workspace --all-targets -- -D warnings
+
+  fmt:
+    desc: Format all Rust code
+    cmds:
+      - cargo fmt --all
+
+  check:
+    desc: Type-check the workspace without building
+    cmds:
+      - cargo check --workspace
+
+  package-assets:
+    desc: Copy and compress assets for distribution
+    cmds:
+      - mkdir -p dist/assets
+      - cp -r assets/* dist/assets/
+      - echo "Assets packaged to dist/assets/"
+
+  clean:
+    desc: Clean build artifacts
+    cmds:
+      - cargo clean
+      - rm -rf dist

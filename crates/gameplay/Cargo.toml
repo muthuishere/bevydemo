@@ -1,0 +1,10 @@
+[package]
+name = "gameplay"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+core_domain = { path = "../core_domain" }
+content_runtime = { path = "../content_runtime" }
+bevy = { workspace = true }
+log = { workspace = true }
