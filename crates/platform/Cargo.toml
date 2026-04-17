@@ -1,0 +1,11 @@
+[package]
+name = "platform"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+core_domain = { path = "../core_domain" }
+serde_json = { workspace = true }
+dotenvy = { workspace = true }
+thiserror = { workspace = true }
+log = { workspace = true }
